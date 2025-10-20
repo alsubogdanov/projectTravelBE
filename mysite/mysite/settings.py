@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      'rest_framework',
 	  'articles',
+   "rest_framework_simplejwt",
+   'users',
    'ckeditor',
    "corsheaders",
 ]
@@ -133,3 +137,24 @@ MEDIA_ROOT = BASE_DIR / "media"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", #Только сайт на http://localhost:3000 может обращаться к твоему Django.
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+ 
+}
+
+CORS_ALLOW_CREDENTIALS = True # Разрешает браузеру отправку "учётных данных" (cookies, токенов авторизации)
+SESSION_COOKIE_SAMESITE = 'Lax'  # или 'None' + secure для https
+SESSION_COOKIE_SECURE = False     # True для https
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", #Только сайт на http://localhost:3000 может обращаться к твоему Django.
+]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=5),  # default 5 минут
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),    # default 7 дней
+    # ... другие настройки
+}

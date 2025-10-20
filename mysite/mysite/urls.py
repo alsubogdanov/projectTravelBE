@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("articles.urls")),  # добавили API
+   path("api/auth/", include("users.urls")),  # JWT login/refresh
 ]
 
 
