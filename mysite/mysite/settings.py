@@ -45,6 +45,7 @@ INSTALLED_APPS = [
    'users',
    'ckeditor',
    "corsheaders",
+   "sitecontent"
 ]
 
 MIDDLEWARE = [
@@ -154,7 +155,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=5),  # default 5 минут
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=10 	),  # default 5 минут
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),    # default 7 дней
     # ... другие настройки
 }

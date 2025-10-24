@@ -20,9 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("api/", include("articles.urls")),  # добавили API
+   path('admin/', admin.site.urls),
+   path("api/", include("articles.urls")),  # добавили API
    path("api/auth/", include("users.urls")),  # JWT login/refresh
+   path("api/sitecontent/", include("sitecontent.urls.public_urls")),
+   # path("api/admin/sitecontent/", include("sitecontent.urls.admin_urls")),
 ]
 
 

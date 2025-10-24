@@ -47,3 +47,12 @@ class CustomTokenRefreshView(APIView):
         except Exception:
             return Response({"detail": "Неверный или просроченный refresh токен"}, status=401)
 
+class LogoutView(APIView):
+    """
+    Удаление refresh токена из HttpOnly cookie при logout.
+    """
+    def post(self, request, *args, **kwargs):
+        response = Response({"detail": "Logged out"}, status=status.HTTP_200_OK)
+        # удаляем cookie
+        response.delete_cookie("refresh_token", path='/')
+        return response
