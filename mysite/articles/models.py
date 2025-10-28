@@ -13,3 +13,17 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+     
+     
+     
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    text = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+    #Показывает имя автора и первые 30 символов комментария.
+        return f"{self.name} - {self.text[:30]}"

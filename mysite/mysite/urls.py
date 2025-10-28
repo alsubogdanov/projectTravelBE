@@ -24,7 +24,7 @@ urlpatterns = [
    path("api/", include("articles.urls")),  # добавили API
    path("api/auth/", include("users.urls")),  # JWT login/refresh
    path("api/sitecontent/", include("sitecontent.urls.public_urls")),
-   # path("api/admin/sitecontent/", include("sitecontent.urls.admin_urls")),
+   path("api/admin/sitecontent/", include("sitecontent.urls.admin_urls")),
 ]
 
 
