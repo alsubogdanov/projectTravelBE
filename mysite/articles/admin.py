@@ -13,9 +13,9 @@ class CommentInline(admin.TabularInline):
     
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "create_date")
+    list_display = ("title", "author", "create_date", 'is_popular')
     search_fields = ("title", "author")
-    list_filter = ("create_date",)
+    list_filter = ('is_popular', "create_date",)
     inlines = [CommentInline]
     
 

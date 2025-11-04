@@ -10,7 +10,8 @@ class Article(models.Model):
     author = models.CharField(max_length=100)  # автор
     create_date = models.DateField(auto_now_add=True)  # дата создания
     content = RichTextField()   # <-- заменили TextField на RichTextField
-
+    is_popular = models.BooleanField(default=False)
+  
     def __str__(self):
         return self.title
      

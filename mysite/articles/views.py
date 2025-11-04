@@ -1,4 +1,4 @@
-from rest_framework import generics, status, permissions
+from rest_framework import generics, viewsets
 from .models import Article
 from .serializers import ArticleSerializer
 from .models import Comment
@@ -13,7 +13,18 @@ class ArticleListCreateView(generics.ListCreateAPIView):
 class ArticleDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    
+
+class PopularArticlesViewSet(viewsets.ReadOnlyModelViewSet):
+    """Популярные статьи"""
+    queryset = Article.objects.filter(is_popular=True)
+    serializer_class = ArticleSerializer
+
+class LatestArticlesViewSet(viewsets.ReadOnlyModelViewSet):
+    """Последние 5 статей"""
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        return Article.objects.order_by('-create_date')[:4]    
     
 class CommentListCreateView(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
